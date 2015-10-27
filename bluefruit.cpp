@@ -87,6 +87,11 @@ bool getUserInput(char buffer[], uint8_t maxSize)
 int box_count = 0;
   
 void bluefruit_loop() {
+  /*
+  extern int x;
+  extern int y;
+  extern int z;
+  */
 
   Serial.println("Begin send message");
   ble.print("AT+BLEUARTTX=");ble.println("data");
