@@ -9,6 +9,11 @@ const int Y_MINUS = 264;
 const int Z_PLUS = 145;
 const int Z_MINUS = 15;
 
+// Variables for export
+int e_x;
+int e_y;
+int e_z;
+
 void adxl335_setup() {
   
 }
@@ -45,6 +50,12 @@ void adxl335_loop() {
   print_to_size(y);Serial.print(F("=y"));
   print_to_size(z);Serial.print(F("=z"));
   Serial.println("");
+
+  /*
+  e_x = x;
+  e_y = y;
+  e_z = z;
+  */
 
   // This code doesn't function on the Arduino for some reason
   /*
