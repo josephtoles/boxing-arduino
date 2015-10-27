@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "BluefruitConfig.h"  //just for serial setup TODO find a better way to do this
+#include "bluefruit.h"  //just for serial setup TODO find a better way to do this
 #include "adxl335.h"
 
 void adxl335_setup() {

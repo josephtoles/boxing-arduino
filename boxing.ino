@@ -12,11 +12,9 @@
  any redistribution
 *********************************************************************/
 
-int READY_PIN = 4;
-
 /***************************
  * Bluefruit configuration *
- ***************************/                                
+ ***************************/
 
 #include <Arduino.h>
 #include <SPI.h>
@@ -24,22 +22,12 @@ int READY_PIN = 4;
   #include <SoftwareSerial.h>
 #endif
 
-#include "Adafruit_BLE.h"
-#include "Adafruit_BluefruitLE_SPI.h"
-#include "Adafruit_BluefruitLE_UART.h"
-
-#include "BluefruitConfig.h"
-#include "adxl335.h"
+#include <Adafruit_BLE.h>
+#include <Adafruit_BluefruitLE_SPI.h>
+#include <Adafruit_BluefruitLE_UART.h>
 
 // Create the bluefruit object, either software serial...uncomment these lines
 
-/* ...hardware SPI, using SCK/MOSI/MISO hardware SPI pins and then user selected CS/IRQ/RST */
-Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_RST);
-
-
-/**********************
- * Import other files *
- **********************/
 #include "bluefruit.h"
 #include "adxl335.h"
 
