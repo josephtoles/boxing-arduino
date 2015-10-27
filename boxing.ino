@@ -53,8 +53,7 @@ void setup(void)
 {
   pinMode(READY_PIN, OUTPUT);
   digitalWrite(READY_PIN, LOW);
-  digitalWrite(READY_PIN, HIGH);  //TODO remove
-  
+
   while (!Serial);  // required for Flora & Micro
   delay(500);
 

@@ -1,3 +1,10 @@
+#ifndef BLUEFRUIT_CONFIG
+#define BLUEFRUIT_CONFIG
+
+// Disable this constant for debugging via serial output
+const bool BLUETOOTH_ENABLED = false;
+
+
 // COMMON SETTINGS
 // ----------------------------------------------------------------------------------------------
 // These settings are used in both SW UART, HW UART and SPI mode
@@ -54,3 +61,5 @@
 #define BLUEFRUIT_SPI_SCK              13
 #define BLUEFRUIT_SPI_MISO             12
 #define BLUEFRUIT_SPI_MOSI             11
+
+#endif

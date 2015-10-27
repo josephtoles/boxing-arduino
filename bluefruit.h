@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "BluefruitConfig.h"
 
 
 // A small helper (Bluefruit)
@@ -84,30 +85,28 @@ void bluefruit_loop() {
   int MIN_CUTOFF = 460;
   int MAX_CUTOFF = 550;
 
-  //  Send arduino --> phone
-  /*
-  // Check for user input
-  char inputs[BUFSIZE+1];
-  if ( getUserInput(inputs, BUFSIZE) )
-  {
-    // Send characters to Bluefruit
-    Serial.print("[Send] ");
-    Serial.println(inputs);
-
-    ble.print("AT+BLEUARTTX=");
-    ble.println(inputs);
-
-    // check response stastus
-    if (! ble.waitForOK() ) {
-      Serial.println(F("Failed to send?"));
-    }
-  }
-  */
   long x = analogRead(1);
   long y = analogRead(2);
   long z = analogRead(3);
+
+  Serial.print("x=");Serial.print(x);
+  Serial.print("y=");Serial.print(y);
+  Serial.print("z=");Serial.print(z);
+  
   long total_acceleration = (long) sqrt(x*x + y*y + z*z);
   //Serial.println(total_acceleration);
+
+  /*
+  Serial.println("Begin send message");
+  ble.print("AT+BLEUARTTX=");ble.println("data");
+  if (! ble.waitForOK() ) {
+     Serial.println(F("Failed to send check-in?"));
+  }
+  delay(50);
+
+  Serial.println("End send message");
+  */
+  
 
   if (total_acceleration > MAX_CUTOFF) {
     box_count += 1;
@@ -124,76 +123,5 @@ void bluefruit_loop() {
       box_count = 0;
     }
   }
-
-  //Serial.print("x");Serial.println(x);
-  //Serial.print("y");Serial.println(y);
-  //Serial.print("z");Serial.println(z);
-  
-  //ble.print("AT+BLEUARTTX=");ble.print(y);ble.println("y");
-
-  /*
-  //int x = analogRead(1);
-  //Serial.print("[Send] ");Serial.println(x);
-  ble.print("AT+BLEUARTTX=");ble.print(x);ble.println("x");
-  delay(50);
-  if (! ble.waitForOK() ) {
-     Serial.println(F("Failed to send x?"));
-  }
-  
-  //int y = analogRead(2);
-  //Serial.print("[Send] ");Serial.println(y);
-  ble.print("AT+BLEUARTTX=");ble.print(y);ble.println("y");
-  delay(50);
-  if (! ble.waitForOK() ) {
-     Serial.println(F("Failed to send y?"));
-  }
-
-  //int z = analogRead(3);
-  //Serial.print("[Send] ");Serial.println(z);
-  ble.print("AT+BLEUARTTX=");ble.print(z);ble.println("z");
-  delay(50);
-  if (! ble.waitForOK() ) {
-     Serial.println(F("Failed to send z?"));
-  }
-
-  //Serial.print("[Send] ");Serial.println(z);
-  ble.print("AT+BLEUARTTX=");ble.println("----");
-  delay(50);
-  if (! ble.waitForOK() ) {
-     Serial.println(F("Failed to send?"));
-  }
-  */
-
-
-  /*
-  int y = analogRead(2);
-  ble.print("AT+BLEUARTTX=");ble.print("y=");ble.print(y);ble.println(" ");
-  delay(50);
-  if (! ble.waitForOK() ) {
-     Serial.println(F("Failed to send?"));
-  }
-
-  int z = analogRead(3);
-  ble.print("AT+BLEUARTTX=");ble.print("z=");ble.print(z);ble.println(" ");  
-  delay(50);
-  if (! ble.waitForOK() ) {
-     Serial.println(F("Failed to send?"));
-  }
-  */
-
-  //ble.println("generic text");
-
-  /* Send info phone --> arduino
-  // Check for incoming characters from Bluefruit
-  ble.println("AT+BLEUARTRX");
-  ble.readline();
-  if (strcmp(ble.buffer, "OK") == 0) {
-    // no data
-    return;
-  }
-  // Some data was found, its in the buffer
-  Serial.print(F("[Recv] ")); Serial.println(ble.buffer);
-  ble.waitForOK();
-  */
 }
 
