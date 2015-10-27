@@ -29,6 +29,7 @@ int READY_PIN = 4;
 #include "Adafruit_BluefruitLE_UART.h"
 
 #include "BluefruitConfig.h"
+#include "adxl335.h"
 
 // Create the bluefruit object, either software serial...uncomment these lines
 
@@ -59,8 +60,10 @@ void setup(void)
 
   Serial.begin(9600);
 
-  bluefruit_setup();
-  setup_adxl335();
+  adxl335_setup();
+  if (BLUETOOTH_ENABLED) {
+    bluefruit_setup();
+  }
 }
 
 /**************************************************************************/
@@ -70,8 +73,10 @@ void setup(void)
 /**************************************************************************/
 void loop(void)
 {
-  bluefruit_loop();
-  loop_adxl1335();
+  adxl335_loop();
+  if (BLUETOOTH_ENABLED) {
+    bluefruit_loop();    
+  }
 }
 
 

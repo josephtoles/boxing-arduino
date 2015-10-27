@@ -10,9 +10,6 @@ void error(const __FlashStringHelper*err) {
 
 
 void bluefruit_setup() {
-  Serial.println(F("Adafruit Bluefruit Command Mode Example"));
-  Serial.println(F("---------------------------------------"));
-
   /* Initialise the module */
   Serial.print(F("Initialising the Bluefruit LE module: "));
 
@@ -82,21 +79,6 @@ int box_count = 0;
   
 void bluefruit_loop() {
 
-  int MIN_CUTOFF = 460;
-  int MAX_CUTOFF = 550;
-
-  long x = analogRead(1);
-  long y = analogRead(2);
-  long z = analogRead(3);
-
-  Serial.print("x=");Serial.print(x);
-  Serial.print("y=");Serial.print(y);
-  Serial.print("z=");Serial.print(z);
-  
-  long total_acceleration = (long) sqrt(x*x + y*y + z*z);
-  //Serial.println(total_acceleration);
-
-  /*
   Serial.println("Begin send message");
   ble.print("AT+BLEUARTTX=");ble.println("data");
   if (! ble.waitForOK() ) {
@@ -105,9 +87,8 @@ void bluefruit_loop() {
   delay(50);
 
   Serial.println("End send message");
-  */
   
-
+  /*
   if (total_acceleration > MAX_CUTOFF) {
     box_count += 1;
   } else {
@@ -123,5 +104,6 @@ void bluefruit_loop() {
       box_count = 0;
     }
   }
+  */
 }
 
