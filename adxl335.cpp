@@ -20,10 +20,12 @@ void adxl335_setup() {
 
 
 void print_to_size(int number) {
+  Serial.print("  ");Serial.print(number);
+  // You [Joseph] are an idiot.
+  
   //char buffer[5] = "";
   //sprintf(buffer, "%5d", number);
   //Serial.print(buffer);
-  Serial.print("  ");Serial.print(number);
 }
 
 
@@ -62,11 +64,11 @@ void adxl335_loop() {
 
   Serial.print(" |");
 
-  int norm_squared = xs*xs + ys*ys + zs*zs;
-  //int n = (int) (sqrt((z * z) + (y * y) + (z * z)));
+  //int norm_squared = xs*xs + ys*ys + zs*zs;
+  int n = (int) (sqrt((xs * xs) + (ys * ys) + (zs * zs)));
   //n = 4;
 
-  print_to_size(norm_squared);Serial.print(F("=n"));
+  print_to_size(n);Serial.print(F("=n"));
   Serial.println("");
 
   // This code doesn't function on the Arduino for some reason
