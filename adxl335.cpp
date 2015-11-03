@@ -48,6 +48,7 @@ void adxl335_loop() {
   int ys = scale(y, Y_MINUS, Y_PLUS);
   int zs = scale(z, Z_MINUS, Z_PLUS);
 
+  /*
   print_to_size(x);Serial.print(F("=ax"));
   print_to_size(y);Serial.print(F("=ay"));
   print_to_size(z);Serial.print(F("=az"));
@@ -63,12 +64,12 @@ void adxl335_loop() {
   //Serial.println("");
 
   Serial.print(" |");
+  */
 
   //int norm_squared = xs*xs + ys*ys + zs*zs;
   int n = (int) (sqrt((xs * xs) + (ys * ys) + (zs * zs)));
-  //n = 4;
 
-  print_to_size(n);Serial.print(F("=n"));
+  print_to_size(n);Serial.print(F(""));
   Serial.println("");
 
   // This code doesn't function on the Arduino for some reason
