@@ -22,5 +22,4 @@ plot(xaxis, numeric)
 
 print('press ENTER to quit')
 invisible(readLines("stdin", n=1))
-print('done')
 
