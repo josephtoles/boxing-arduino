@@ -3,9 +3,11 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 if (is.na(args[1])) {
-	filename = "data/data"
+	#filename = "data/data"
+	filename = "data"
 } else {
-	filename = paste(c("data", args[1]), collapse="/")
+	#filename = paste(c("data", args[1]), collapse="/")
+	filename = args[1]
 }
 
 fc = file(filename)
