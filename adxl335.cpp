@@ -16,12 +16,15 @@ int n_3;
 int n_4;
 
 // Variables for remembering time
-int time_since_punch_start;
+int integrated_acceleration;
+int time_count;
 bool punch_confirmed;
 
 void adxl335_setup() {
-  time_since_punch_start = 0;
+  integrated_acceleration = 0;
+  time_count = 0;
   punch_confirmed = false;
+  Serial.println("Ready");
 }
 
 
@@ -74,25 +77,31 @@ void adxl335_loop() {
   */
 
   int n = (int) (sqrt((xs * xs) + (ys * ys) + (zs * zs)));
-  if (false) {
+  if (true) {
     print_to_size(n);Serial.print(F(""));
     Serial.println("");
   }
 
+  /*
   //Trying integration
   if (n > 100) {
-    if (n > 145) {
+    if (n > 125) {
       punch_confirmed = true;
     }
-    time_since_punch_start += n - 100;
+    integrated_acceleration += n - 100;
+    time_count += 1;
   } else {
-    if (punch_confirmed && (time_since_punch_start > 3000)) {
-      Serial.println(time_since_punch_start);
+    
+    if (punch_confirmed && (integrated_acceleration > 3000)) {
+      //Serial.println(integrated_acceleration);
+      //Serial.println(time_count);
       delay(1000);
     }
-    time_since_punch_start = 0;
+    integrated_acceleration = 0;
+    time_count = 0;
     punch_confirmed = false;
   }
+  */
 
   // Trying hard cutoffs
   /*

@@ -1,6 +1,14 @@
 #!/usr/bin/env Rscript
 
-fc = file("data/data")
+args <- commandArgs(trailingOnly = TRUE)
+
+if (is.na(args[1])) {
+	filename = "data/data"
+} else {
+	filename = paste(c("data", args[1]), collapse="/")
+}
+
+fc = file(filename)
 lines = readLines(fc)
 close(fc)
 
