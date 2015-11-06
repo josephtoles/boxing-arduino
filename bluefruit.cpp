@@ -1,14 +1,12 @@
 #include <Arduino.h>
+
 #include "bluefruit.h"
-
-
 #include <Adafruit_BLE.h>
 #include <Adafruit_BluefruitLE_SPI.h>
 #include <Adafruit_BluefruitLE_UART.h>
 
 /* ...hardware SPI, using SCK/MOSI/MISO hardware SPI pins and then user selected CS/IRQ/RST */
 Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_RST);
-
 
 
 // A small helper (Bluefruit)
@@ -37,9 +35,9 @@ void bluefruit_setup() {
   /* Disable command echo from Bluefruit */
   ble.echo(false);
 
-  Serial.println("Requesting Bluefruit info:");
+  //Serial.println("Requesting Bluefruit info:");
   /* Print Bluefruit information */
-  ble.info();
+  //ble.info();
 
   Serial.println(F("Please use Adafruit Bluefruit LE app to connect in UART mode"));
   Serial.println();
@@ -62,6 +60,7 @@ void bluefruit_setup() {
     @brief  Checks for user input (via the Serial Monitor)
 */
 /**************************************************************************/
+/*
 bool getUserInput(char buffer[], uint8_t maxSize)
 {
   // timeout in 100 milliseconds
@@ -82,42 +81,35 @@ bool getUserInput(char buffer[], uint8_t maxSize)
 
   return true;
 }
+*/
 
-
-int box_count = 0;
-  
 void bluefruit_loop() {
   /*
-  extern int x;
-  extern int y;
-  extern int z;
-  */
-
-  Serial.println("Begin send message");
-  ble.print("AT+BLEUARTTX=");ble.println("data");
-  if (! ble.waitForOK() ) {
-     Serial.println(F("Failed to send check-in?"));
+  extern int n_ext;
+  if (n_ext) {
+    Serial.println(n_ext);
+    n_ext = 0;
   }
-  delay(50);
+  */
+  extern int n_ext;
+  //Serial.println(n_ext);
 
-  Serial.println("End send message");
-  
-  /*
-  if (total_acceleration > MAX_CUTOFF) {
-    box_count += 1;
-  } else {
-    if (box_count) {
-      if (box_count >= 1000 && box_count <= 9999) {
-        Serial.println(box_count);
-        ble.print("AT+BLEUARTTX=");ble.print(box_count);ble.println("            ");
-        delay(50);
-        if (! ble.waitForOK() ) {
-           Serial.println(F("Failed to send x?"));
-        }
-      }
-      box_count = 0;
+  if (n_ext) {
+    Serial.println(n_ext);
+    
+    //Serial.println("Begin send message");
+    ble.print("AT+BLEUARTTX=");ble.println(n_ext);
+    if (! ble.waitForOK() ) {
+       Serial.println(F("Failed to send check-in?"));
     }
+    delay(50);
+    
+    n_ext = 0;
+  } else {
+    //Serial.println("n_ext is zero");
   }
-  */
+
+  //Serial.println("End send message");
+  
 }
 

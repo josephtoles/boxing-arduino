@@ -2,7 +2,7 @@
 #define BLUEFRUIT_CONFIG
 
 // Disable this constant for debugging via serial output
-const bool BLUETOOTH_ENABLED = false;
+const bool BLUETOOTH_ENABLED = true;
 
 
 // Indicates which pin is used for the superstition light

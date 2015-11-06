@@ -13,11 +13,12 @@ const int Z_MINUS = 269;  // Requires slightly finer calibration
 bool counting_zeroes;
 int count_since_first_zero;
 int count_since_last_zero;
-
+int n_ext;  // Variable to send data to bluefruit.cpp for output
+int n;  // May not have to be here
 
 void adxl335_setup() {
   bool counting_zeroes = false;
-  Serial.println("Ready");
+  n_ext = 0;
 }
 
 
@@ -40,7 +41,7 @@ void adxl335_loop() {
   int ys = scale(y, Y_MINUS, Y_PLUS);
   int zs = scale(z, Z_MINUS, Z_PLUS);
 
-  int n = (int) (sqrt((xs * xs) + (ys * ys) + (zs * zs)));
+  n = (int) (sqrt((xs * xs) + (ys * ys) + (zs * zs)));
 
   //Counting zeroes
   if (counting_zeroes) {
@@ -49,8 +50,10 @@ void adxl335_loop() {
       count_since_last_zero = 0;
     } else {
       ++count_since_last_zero;
-      if (count_since_last_zero > 200) {
-        Serial.println(count_since_first_zero);
+      if (count_since_last_zero > 100) {
+        //Serial.println(count_since_first_zero);
+        n_ext = count_since_first_zero;
+        //Serial.println(n_ext);
         counting_zeroes = false;
       }
     }
