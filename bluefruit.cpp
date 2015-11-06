@@ -96,13 +96,15 @@ void bluefruit_loop() {
 
   if (n_ext) {
     Serial.println(n_ext);
-    
-    //Serial.println("Begin send message");
-    ble.print("AT+BLEUARTTX=");ble.println(n_ext);
-    if (! ble.waitForOK() ) {
-       Serial.println(F("Failed to send check-in?"));
+
+    if (n_ext > 200) {
+      //Serial.println("Begin send message");
+      ble.print("AT+BLEUARTTX=");ble.println(n_ext);
+      if (! ble.waitForOK() ) {
+         Serial.println(F("Failed to send check-in?"));
+      }
+      delay(50);
     }
-    delay(50);
     
     n_ext = 0;
   } else {
